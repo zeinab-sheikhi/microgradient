@@ -1,6 +1,6 @@
 import random
 
-from engine import Value
+from micrograd.engine import Value
 from typing import List
 
 
@@ -14,8 +14,8 @@ class Module:
 
 
 class Neuron(Module):
-    def __init__(self, num_inputs, nonlin=True):
-        self.weight = [Value(data=random.uniform(-1, 1)) for _ in range(num_inputs)]
+    def __init__(self, n_ins: List[int], nonlin=True):
+        self.weight = [Value(data=random.uniform(-1, 1)) for _ in range(n_ins)]
         self.bias = Value(0)
         self.nonlin = nonlin
 
