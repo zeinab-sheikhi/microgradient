@@ -1,6 +1,6 @@
 import random
 
-from micrograd.engine import Value
+from .engine import Value
 from typing import List
 
 
@@ -31,8 +31,8 @@ class Neuron(Module):
 
 
 class Layer(Module):
-    def __init__(self, n_in: int, n_out: int):
-        self.neurons = [Neuron(n_in) for _ in range(n_out)]
+    def __init__(self, n_in: int, n_out: int, **kwargs):
+        self.neurons = [Neuron(n_in, **kwargs) for _ in range(n_out)]
 
     def __call__(self, x):
         out = [neuron(x) for neuron in self.neurons]
@@ -50,7 +50,7 @@ class MLP(Module):
         sz = [n_in] + n_outs
         self.layers = [
             Layer(n_in=sz[i], n_out=sz[i + 1], nonlin=i != len(n_outs) - 1) 
-            for i in range(sz)]
+            for i in range(len((n_outs)))]
 
     def __call__(self, x):
         for layer in self.layers:

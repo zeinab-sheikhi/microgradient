@@ -11,7 +11,7 @@ class Value:
         self._backward = lambda: None
 
     def __repr__(self):
-        return f"Valeu(data={self.data}, grad={self.grad})"
+        return f"Value(data={self.data}, grad={self.grad})"
 
     def __add__(self, other):
         other = other if isinstance(other, Value) else Value(data=other)
